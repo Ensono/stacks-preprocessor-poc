@@ -1,9 +1,11 @@
-package com.ensono.stacks_preprocessor;
+package com.ensono.stacks.stacks_preprocessor;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan(basePackages = {"com.ensono.stacks"})
 public class StacksPreprocessorApplication {
 
 	public static void main(String[] args) {

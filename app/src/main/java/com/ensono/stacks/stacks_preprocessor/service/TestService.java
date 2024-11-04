@@ -1,4 +1,4 @@
-package com.ensono.stacks_preprocessor.service;
+package com.ensono.stacks.stacks_preprocessor.service;
 
 import org.springframework.stereotype.Service;
 
