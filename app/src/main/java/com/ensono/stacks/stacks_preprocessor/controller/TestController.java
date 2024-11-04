@@ -3,10 +3,10 @@ package com.ensono.stacks.stacks_preprocessor.controller;
 
 #if AZURE
 
-import com.amido.stacksdemo.azure.types.Azure;
+import com.ensono.stacks.azure.Azure;
 #elif AWS
 
-import com.amido.stacksdemo.aws.types.AWS;
+import com.ensono.stacks.aws.AWS;
 #endif
 
 #if DYNAMODBX
@@ -18,11 +18,11 @@ import com.ensono.stacks.cosmos.StacksCosmosRepository;
 #endif
 
 #if SQS
-import com.amido.stacksdemo.sqs.types.SQS;
+import com.ensono.stacks.sqs.SQS;
 #elif KAFKA
-import com.amido.stacksdemo.kafka.types.Kafka;
+import com.ensono.stacks.kafka.Kafka;
 #elif SERVICEBUS
-import com.amido.stacksdemo.servicebus.types.ServiceBus;
+import com.ensono.stacks.servicebus.ServiceBus;
 #endif
 
 import com.ensono.stacks.commons.CommonStuff;

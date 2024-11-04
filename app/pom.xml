@@ -17,15 +17,15 @@
         <maven.compiler.source>20</maven.compiler.source>
         <maven.compiler.target>20</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-            <java.version>20</java.version>
-            <manifold.version>2024.1.38</manifold.version>
-            <fmt-maven-plugin.version>2.25</fmt-maven-plugin.version>
-            <prop.dynamodb></prop.dynamodb>
-            <profile.dynamodb></profile.dynamodb>
-            <prop.cosmos></prop.cosmos>
-            <profile.cosmos></profile.cosmos>
-            <prop.xxx></prop.xxx>
-            <prop.output.dir>/Users/alastairbrown/Documents/development/stacks-preprocessor/output</prop.output.dir>
+        <java.version>20</java.version>
+        <manifold.version>2024.1.38</manifold.version>
+        <fmt-maven-plugin.version>2.25</fmt-maven-plugin.version>
+        <prop.dynamodb></prop.dynamodb>
+        <profile.dynamodb></profile.dynamodb>
+        <prop.cosmos></prop.cosmos>
+        <profile.cosmos></profile.cosmos>
+        <prop.xxx></prop.xxx>
+        <prop.output.dir>/Users/alastairbrown/Documents/development/stacks-preprocessor/output</prop.output.dir>
     </properties>
 
     <profiles>
