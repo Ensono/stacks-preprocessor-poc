@@ -17,11 +17,11 @@ public class TestService {
 			System.out.println("TEST2 is set");
 		#endif
 
-		#if DYNAMODBX
+		#if USE_DYNAMODB
 			System.out.println("DYNAMODB is set");
 		#endif
 
-		#if COSMOSX
+		#if USE_COSMOS
 			System.out.println("COSMOS is set");
 		#endif
 

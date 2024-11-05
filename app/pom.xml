@@ -14,21 +14,56 @@
     <artifactId>app</artifactId>
 
     <properties>
-        <maven.compiler.source>20</maven.compiler.source>
-        <maven.compiler.target>20</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>20</java.version>
         <manifold.version>2024.1.38</manifold.version>
         <fmt-maven-plugin.version>2.25</fmt-maven-plugin.version>
         <prop.dynamodb></prop.dynamodb>
         <profile.dynamodb></profile.dynamodb>
         <prop.cosmos></prop.cosmos>
         <profile.cosmos></profile.cosmos>
+        <prop.aws></prop.aws>
+        <prop.azure></prop.azure>
+        <prop.kafka></prop.kafka>
+        <prop.sqs></prop.sqs>
+        <prop.servicebus></prop.servicebus>
         <prop.xxx></prop.xxx>
         <prop.output.dir>/Users/alastairbrown/Documents/development/stacks-preprocessor/output</prop.output.dir>
     </properties>
 
     <profiles>
+
+        <profile>
+            <id>aws</id>
+            <properties>
+                <prop.aws>-AUSE_AWS=</prop.aws>
+                <profile.aws>aws</profile.aws>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.ensono.stacks</groupId>
+                    <artifactId>aws</artifactId>
+                    <version>0.0.1-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>azure</id>
+            <properties>
+                <prop.azure>-AUSE_AZURE=</prop.azure>
+                <profile.azure>azure</profile.azure>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.ensono.stacks</groupId>
+                    <artifactId>azure</artifactId>
+                    <version>0.0.1-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
         <profile>
             <id>dynamodb</id>
             <activation>
@@ -36,7 +71,7 @@
             </activation>
             <properties>
                 <activatedProperties>dynamodb</activatedProperties>
-                <prop.dynamodb>-ADYNAMODBX=</prop.dynamodb>
+                <prop.dynamodb>-AUSE_DYNAMODB=</prop.dynamodb>
                 <profile.dynamodb>dynamodb</profile.dynamodb>
             </properties>
             <dependencies>
@@ -47,10 +82,11 @@
                 </dependency>
             </dependencies>
         </profile>
+
         <profile>
             <id>cosmos</id>
             <properties>
-                <prop.cosmos>-ACOSMOSX=</prop.cosmos>
+                <prop.cosmos>-AUSE_COSMOS=</prop.cosmos>
                 <profile.cosmos>cosmos</profile.cosmos>
             </properties>
             <dependencies>
@@ -61,6 +97,52 @@
                 </dependency>
             </dependencies>
         </profile>
+
+        <profile>
+            <id>kafka</id>
+            <properties>
+                <prop.kafka>-AUSE_KAFKA=</prop.kafka>
+                <profile.kafka>kafka</profile.kafka>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.ensono.stacks</groupId>
+                    <artifactId>kafka</artifactId>
+                    <version>0.0.1-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>servicebus</id>
+            <properties>
+                <prop.servicebus>-AUSE_SERVICEBUS=</prop.servicebus>
+                <profile.servicebus>servicebus</profile.servicebus>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.ensono.stacks</groupId>
+                    <artifactId>servicebus</artifactId>
+                    <version>0.0.1-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>sqs</id>
+            <properties>
+                <prop.sqs>-AUSE_SQS=</prop.sqs>
+                <profile.sqs>sqs</profile.sqs>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.ensono.stacks</groupId>
+                    <artifactId>sqs</artifactId>
+                    <version>0.0.1-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
     </profiles>
 
     <dependencies>
@@ -115,8 +197,13 @@
                         <arg>-Xplugin:Manifold</arg>
                         <arg>-Amanifold.source.target=/Users/alastairbrown/Documents/development/stacks-preprocessor/output</arg>
                         <arg>-ATEST</arg>
+                        <arg>${prop.aws}</arg>
+                        <arg>${prop.azure}</arg>
                         <arg>${prop.dynamodb}</arg>
                         <arg>${prop.cosmos}</arg>
+                        <arg>${prop.kafka}</arg>
+                        <arg>${prop.sqs}</arg>
+                        <arg>${prop.servicebus}</arg>
                     </compilerArgs>
                     <!-- Add the processor path for the plugin -->
                     <annotationProcessorPaths>
@@ -124,6 +211,11 @@
                             <groupId>systems.manifold</groupId>
                             <artifactId>manifold-preprocessor</artifactId>
                             <version>${manifold.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
                         </path>
                     </annotationProcessorPaths>
                 </configuration>

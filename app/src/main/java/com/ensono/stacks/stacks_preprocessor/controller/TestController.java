@@ -1,27 +1,27 @@
 package com.ensono.stacks.stacks_preprocessor.controller;
 
 
-#if AZURE
+#if USE_AZURE
 
 import com.ensono.stacks.azure.Azure;
-#elif AWS
+#elif USE_AWS
 
 import com.ensono.stacks.aws.AWS;
 #endif
 
-#if DYNAMODBX
+#if USE_DYNAMODB
 import com.ensono.stacks.dynamodb.DynamoDB;
 import com.ensono.stacks.dynamodb.StacksDynamoDBRepository;
-#elif COSMOSX
+#elif USE_COSMOS
 import com.ensono.stacks.cosmos.CosmosDB;
 import com.ensono.stacks.cosmos.StacksCosmosRepository;
 #endif
 
-#if SQS
+#if USE_SQS
 import com.ensono.stacks.sqs.SQS;
-#elif KAFKA
+#elif USE_KAFKA
 import com.ensono.stacks.kafka.Kafka;
-#elif SERVICEBUS
+#elif USE_SERVICEBUS
 import com.ensono.stacks.servicebus.ServiceBus;
 #endif
 
@@ -40,30 +40,30 @@ import javax.annotation.PostConstruct;
 @Slf4j
 public class TestController {
 
-  #if AZURE
+  #if USE_AZURE
   @Autowired
   private Azure azure;
-  #elif AWS
+  #elif USE_AWS
   @Autowired
   private AWS aws;
   #endif
 
-  #if DYNAMODBX
+  #if USE_DYNAMODB
   @Autowired
   private DynamoDB dynamoDB;
 
-  #elif COSMOSX
+  #elif USE_COSMOS
   @Autowired
   private CosmosDB cosmosDB;
   #endif
 
-  #if SQS
+  #if USE_SQS
   @Autowired
   private SQS sqs;
-  #elif KAFKA
+  #elif USE_KAFKA
   @Autowired
   private Kafka kafka;
-  #elif SERVICEBUS
+  #elif USE_SERVICEBUS
   @Autowired
   private ServiceBus serviceBus;
   #endif
@@ -71,18 +71,22 @@ public class TestController {
   @Autowired
   private CommonStuff commonStuff;
 
-  #if DYNAMODBX
+  #if USE_DYNAMODB
   @Autowired
   private StacksDynamoDBRepository<String> dynamoDBrepository;
 
-  #elif COSMOSX
+  #elif USE_COSMOS
   @Autowired
   private StacksCosmosRepository<String> cosmosDBrepository;
   #endif
 
   @GetMapping
   public ResponseEntity<String> test() {
-    execute();
+    #if USE_AWS
+    aws.usingAWS();
+    #elif USE_AZURE
+    azure.usingAzure();
+    #endif
 
     return ResponseEntity.ok("ACK");
   }
@@ -90,25 +94,27 @@ public class TestController {
   @PostConstruct
   public void execute() {
 
-    #if AWS
+    commonStuff.loaded();
+
+    #if USE_AWS
     aws.usingAWS();
-    #elif AZURE
+    #elif USE_AZURE
     azure.usingAzure();
     #endif
 
-    #if DYNAMODB
+    #if USE_DYNAMODB
     dynamoDB.usingDynamoDB();
     dynamoDBrepository.useDynamoDB(log);
-    #elif COSMOSDB
+    #elif USE_COSMOSDB
     cosmosDB.usingCosmosDB();
     cosmosDBrepository.useCosmos(log);
     #endif
 
-    #if SQS
+    #if USE_SQS
     sqs.sendUsingSqs();
-    #elif KAFKA
+    #elif USE_KAFKA
     kafka.sendUsingKafka();
-    #elif SERVICEBUS
+    #elif USE_SERVICEBUS
     serviceBus.sendUsingServiceBus();
     #endif
 
