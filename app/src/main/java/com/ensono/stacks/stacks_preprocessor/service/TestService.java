@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TestService {
+
+    private static String TEST_VALUE = "HelloWorld";
     public TestService() {
         #if OS_MAC
         System.out.println("Running on Mac");
@@ -25,5 +27,9 @@ public class TestService {
 			System.out.println("COSMOS is set");
 		#endif
 
+    }
+
+    public String getValue() {
+        return TEST_VALUE;
     }
 }

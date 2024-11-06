@@ -19,16 +19,28 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <manifold.version>2024.1.38</manifold.version>
         <fmt-maven-plugin.version>2.25</fmt-maven-plugin.version>
+
         <prop.dynamodb></prop.dynamodb>
         <profile.dynamodb></profile.dynamodb>
+
         <prop.cosmos></prop.cosmos>
         <profile.cosmos></profile.cosmos>
+
         <prop.aws></prop.aws>
+        <profile.aws></profile.aws>
+
         <prop.azure></prop.azure>
+        <profile.azure></profile.azure>
+
         <prop.kafka></prop.kafka>
+        <profile.kafka></profile.kafka>
+
         <prop.sqs></prop.sqs>
+        <profile.sqs></profile.sqs>
+
         <prop.servicebus></prop.servicebus>
-        <prop.xxx></prop.xxx>
+        <profile.servicebus></profile.servicebus>
+
         <prop.output.dir>/Users/alastairbrown/Documents/development/stacks-preprocessor/output</prop.output.dir>
     </properties>
 
@@ -196,7 +208,6 @@
                         <!-- Configure manifold plugin -->
                         <arg>-Xplugin:Manifold</arg>
                         <arg>-Amanifold.source.target=/Users/alastairbrown/Documents/development/stacks-preprocessor/output</arg>
-                        <arg>-ATEST</arg>
                         <arg>${prop.aws}</arg>
                         <arg>${prop.azure}</arg>
                         <arg>${prop.dynamodb}</arg>
@@ -219,6 +230,20 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
+<!--
+                <executions>
+                    <execution>
+                        <id>default-testCompile</id>
+                        <configuration>
+                            <annotationProcessorPaths>
+                                <groupId>systems.manifold</groupId>
+                                <artifactId>manifold-preprocessor</artifactId>
+                                <version>${manifold.version}</version>
+                            </annotationProcessorPaths>
+                        </configuration>
+                    </execution>
+                </executions>
+                -->
             </plugin>
 
             <plugin>
@@ -234,7 +259,6 @@
                     <profiles>
                         <profile>${profile.dynamodb}</profile>
                         <profile>${profile.cosmos}</profile>
-                        <profile>${prop.xxx}</profile>
                     </profiles>
                 </configuration>
             </plugin>
@@ -251,6 +275,9 @@
                             </goal>
                             <goal>
                                 stacks-prepare-project
+                            </goal>
+                            <goal>
+                                stacks-prepare-project-tests
                             </goal>
                         </goals>
                     </execution>
