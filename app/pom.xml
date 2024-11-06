@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.4</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.ensono.stacks</groupId>
+    <artifactId>app</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <manifold.version>2024.1.38</manifold.version>
+        <fmt-maven-plugin.version>2.25</fmt-maven-plugin.version>
+
+        <prop.dynamodb></prop.dynamodb>
+        <profile.dynamodb></profile.dynamodb>
+
+        <prop.cosmos></prop.cosmos>
+        <profile.cosmos></profile.cosmos>
+
+        <prop.aws></prop.aws>
+        <profile.aws></profile.aws>
+
+        <prop.azure></prop.azure>
+        <profile.azure></profile.azure>
+
+        <prop.kafka></prop.kafka>
+        <profile.kafka></profile.kafka>
+
+        <prop.sqs></prop.sqs>
+        <profile.sqs></profile.sqs>
+
+        <prop.servicebus></prop.servicebus>
+        <profile.servicebus></profile.servicebus>
+
+        <prop.output.dir>/Users/alastairbrown/Documents/development/stacks-preprocessor/output</prop.output.dir>
+    </properties>
+
+    <profiles>
+
+        <profile>
+            <id>aws</id>
+            <properties>
+                <prop.aws>-AUSE_AWS=</prop.aws>
+                <profile.aws>aws</profile.aws>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.ensono.stacks</groupId>
+                    <artifactId>aws</artifactId>
+                    <version>0.0.1-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>azure</id>
+            <properties>
+                <prop.azure>-AUSE_AZURE=</prop.azure>
+                <profile.azure>azure</profile.azure>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.ensono.stacks</groupId>
+                    <artifactId>azure</artifactId>
+                    <version>0.0.1-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>dynamodb</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <activatedProperties>dynamodb</activatedProperties>
+                <prop.dynamodb>-AUSE_DYNAMODB=</prop.dynamodb>
+                <profile.dynamodb>dynamodb</profile.dynamodb>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.ensono.stacks</groupId>
+                    <artifactId>dynamodb</artifactId>
+                    <version>0.0.1-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>cosmos</id>
+            <properties>
+                <prop.cosmos>-AUSE_COSMOS=</prop.cosmos>
+                <profile.cosmos>cosmos</profile.cosmos>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.ensono.stacks</groupId>
+                    <artifactId>cosmos</artifactId>
+                    <version>0.0.1-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>kafka</id>
+            <properties>
+                <prop.kafka>-AUSE_KAFKA=</prop.kafka>
+                <profile.kafka>kafka</profile.kafka>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.ensono.stacks</groupId>
+                    <artifactId>kafka</artifactId>
+                    <version>0.0.1-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>servicebus</id>
+            <properties>
+                <prop.servicebus>-AUSE_SERVICEBUS=</prop.servicebus>
+                <profile.servicebus>servicebus</profile.servicebus>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.ensono.stacks</groupId>
+                    <artifactId>servicebus</artifactId>
+                    <version>0.0.1-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>sqs</id>
+            <properties>
+                <prop.sqs>-AUSE_SQS=</prop.sqs>
+                <profile.sqs>sqs</profile.sqs>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>com.ensono.stacks</groupId>
+                    <artifactId>sqs</artifactId>
+                    <version>0.0.1-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+        </profile>
+
+    </profiles>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>systems.manifold</groupId>
+            <artifactId>manifold</artifactId>
+            <version>${manifold.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ensono.stacks</groupId>
+            <artifactId>commons</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.spotify.fmt</groupId>
+            <artifactId>fmt-maven-plugin</artifactId>
+            <version>${fmt-maven-plugin.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                    <encoding>UTF-8</encoding>
+                    <compilerArgs>
+                        <!-- Configure manifold plugin -->
+                        <arg>-Xplugin:Manifold</arg>
+                        <arg>-Amanifold.source.target=/Users/alastairbrown/Documents/development/stacks-preprocessor/output</arg>
+                        <arg>${prop.aws}</arg>
+                        <arg>${prop.azure}</arg>
+                        <arg>${prop.dynamodb}</arg>
+                        <arg>${prop.cosmos}</arg>
+                        <arg>${prop.kafka}</arg>
+                        <arg>${prop.sqs}</arg>
+                        <arg>${prop.servicebus}</arg>
+                    </compilerArgs>
+                    <!-- Add the processor path for the plugin -->
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>systems.manifold</groupId>
+                            <artifactId>manifold-preprocessor</artifactId>
+                            <version>${manifold.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+<!--
+                <executions>
+                    <execution>
+                        <id>default-testCompile</id>
+                        <configuration>
+                            <annotationProcessorPaths>
+                                <groupId>systems.manifold</groupId>
+                                <artifactId>manifold-preprocessor</artifactId>
+                                <version>${manifold.version}</version>
+                            </annotationProcessorPaths>
+                        </configuration>
+                    </execution>
+                </executions>
+                -->
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                    <profiles>
+                        <profile>${profile.dynamodb}</profile>
+                        <profile>${profile.cosmos}</profile>
+                    </profiles>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.ensono.stacks</groupId>
+                <artifactId>stacks-maven-plugin</artifactId>
+                <version>1.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>
+                                stacks-clean-project
+                            </goal>
+                            <goal>
+                                stacks-prepare-project
+                            </goal>
+                            <goal>
+                                stacks-prepare-project-tests
+                            </goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <projectLocation>${prop.output.dir}</projectLocation>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.spotify.fmt</groupId>
+                <artifactId>fmt-maven-plugin</artifactId>
+                <version>${fmt-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>format</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sourceDirectory>${prop.output.dir}/src/main/java</sourceDirectory>
+                    <displayFiles>true</displayFiles>
+                    <verbose>true</verbose>
+                    <filesNamePattern>.*\.java</filesNamePattern>
+                    <additionalSourceDirectories/>
+                    <skip>false</skip>
+                    <skipSortingImports>false</skipSortingImports>
+                    <style>google</style>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+</project>
