@@ -11,15 +11,9 @@
 	<description>Demo project for Spring Boot</description>
 
 	<modules>
-		<module>dynamodb</module>
+
 		<module>app</module>
-		<module>commons</module>
-		<module>cosmos</module>
-		<module>aws</module>
-		<module>azure</module>
-		<module>kafka</module>
-		<module>sqs</module>
-		<module>servicebus</module>
+
 	</modules>
 
 

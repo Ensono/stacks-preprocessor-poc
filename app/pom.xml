@@ -53,12 +53,35 @@
                 <profile.aws>aws</profile.aws>
             </properties>
             <dependencies>
-                <dependency>
-                    <groupId>com.ensono.stacks</groupId>
-                    <artifactId>aws</artifactId>
-                    <version>0.0.1-SNAPSHOT</version>
-                </dependency>
             </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <executions>
+                            <execution>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${prop.output.dir}/src/main/resources</outputDirectory>
+                                    <overwrite>false</overwrite>
+                                    <resources>
+                                        <resource>
+                                            <includes>
+                                                <include>application-aws.yml</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
 
         <profile>
@@ -68,12 +91,35 @@
                 <profile.azure>azure</profile.azure>
             </properties>
             <dependencies>
-                <dependency>
-                    <groupId>com.ensono.stacks</groupId>
-                    <artifactId>azure</artifactId>
-                    <version>0.0.1-SNAPSHOT</version>
-                </dependency>
             </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <executions>
+                            <execution>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${prop.output.dir}/src/main/resources</outputDirectory>
+                                    <overwrite>false</overwrite>
+                                    <resources>
+                                        <resource>
+                                            <includes>
+                                                <include>application-azure.yml</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
 
         <profile>
@@ -87,12 +133,35 @@
                 <profile.dynamodb>dynamodb</profile.dynamodb>
             </properties>
             <dependencies>
-                <dependency>
-                    <groupId>com.ensono.stacks</groupId>
-                    <artifactId>dynamodb</artifactId>
-                    <version>0.0.1-SNAPSHOT</version>
-                </dependency>
             </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <executions>
+                            <execution>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${prop.output.dir}/src/main/resources</outputDirectory>
+                                    <overwrite>false</overwrite>
+                                    <resources>
+                                        <resource>
+                                            <includes>
+                                                <include>application-dynamodb.yml</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
 
         <profile>
@@ -102,12 +171,36 @@
                 <profile.cosmos>cosmos</profile.cosmos>
             </properties>
             <dependencies>
-                <dependency>
-                    <groupId>com.ensono.stacks</groupId>
-                    <artifactId>cosmos</artifactId>
-                    <version>0.0.1-SNAPSHOT</version>
-                </dependency>
             </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <executions>
+                            <execution>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${prop.output.dir}/src/main/resources</outputDirectory>
+                                    <overwrite>false</overwrite>
+                                    <resources>
+                                        <resource>
+                                            <directory>src/main/resources</directory>
+                                            <includes>
+                                                <include>application-cosmosdb.yml</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
 
         <profile>
@@ -117,11 +210,6 @@
                 <profile.kafka>kafka</profile.kafka>
             </properties>
             <dependencies>
-                <dependency>
-                    <groupId>com.ensono.stacks</groupId>
-                    <artifactId>kafka</artifactId>
-                    <version>0.0.1-SNAPSHOT</version>
-                </dependency>
             </dependencies>
         </profile>
 
@@ -132,11 +220,6 @@
                 <profile.servicebus>servicebus</profile.servicebus>
             </properties>
             <dependencies>
-                <dependency>
-                    <groupId>com.ensono.stacks</groupId>
-                    <artifactId>servicebus</artifactId>
-                    <version>0.0.1-SNAPSHOT</version>
-                </dependency>
             </dependencies>
         </profile>
 
@@ -147,11 +230,7 @@
                 <profile.sqs>sqs</profile.sqs>
             </properties>
             <dependencies>
-                <dependency>
-                    <groupId>com.ensono.stacks</groupId>
-                    <artifactId>sqs</artifactId>
-                    <version>0.0.1-SNAPSHOT</version>
-                </dependency>
+
             </dependencies>
         </profile>
 
@@ -174,13 +253,13 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-
+<!--
         <dependency>
             <groupId>com.ensono.stacks</groupId>
             <artifactId>commons</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
+-->
         <dependency>
             <groupId>com.spotify.fmt</groupId>
             <artifactId>fmt-maven-plugin</artifactId>
@@ -230,20 +309,6 @@
                         </path>
                     </annotationProcessorPaths>
                 </configuration>
-<!--
-                <executions>
-                    <execution>
-                        <id>default-testCompile</id>
-                        <configuration>
-                            <annotationProcessorPaths>
-                                <groupId>systems.manifold</groupId>
-                                <artifactId>manifold-preprocessor</artifactId>
-                                <version>${manifold.version}</version>
-                            </annotationProcessorPaths>
-                        </configuration>
-                    </execution>
-                </executions>
-                -->
             </plugin>
 
             <plugin>
@@ -286,6 +351,33 @@
                     <projectLocation>${prop.output.dir}</projectLocation>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${prop.output.dir}/src/main/resources</outputDirectory>
+                            <overwrite>false</overwrite>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources</directory>
+                                    <includes>
+                                        <include>application.yml</include>
+                                    </includes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
 
             <plugin>
                 <groupId>com.spotify.fmt</groupId>

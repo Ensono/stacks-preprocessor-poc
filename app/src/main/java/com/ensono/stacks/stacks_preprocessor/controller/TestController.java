@@ -3,29 +3,29 @@ package com.ensono.stacks.stacks_preprocessor.controller;
 
 #if USE_AZURE
 
-import com.ensono.stacks.azure.Azure;
+import com.ensono.stacks.stacks_preprocessor.azure.Azure;
 #elif USE_AWS
 
-import com.ensono.stacks.aws.AWS;
+import com.ensono.stacks.stacks_preprocessor.aws.AWS;
 #endif
 
 #if USE_DYNAMODB
-import com.ensono.stacks.dynamodb.DynamoDB;
-import com.ensono.stacks.dynamodb.StacksDynamoDBRepository;
+import com.ensono.stacks.stacks_preprocessor.dynamodb.DynamoDB;
+import com.ensono.stacks.stacks_preprocessor.dynamodb.StacksDynamoDBRepository;
 #elif USE_COSMOS
-import com.ensono.stacks.cosmos.CosmosDB;
-import com.ensono.stacks.cosmos.StacksCosmosRepository;
+import com.ensono.stacks.stacks_preprocessor.cosmos.CosmosDB;
+import com.ensono.stacks.stacks_preprocessor.cosmos.StacksCosmosRepository;
 #endif
 
 #if USE_SQS
-import com.ensono.stacks.sqs.SQS;
+import com.ensono.stacks.stacks_preprocessor.sqs.SQS;
 #elif USE_KAFKA
-import com.ensono.stacks.kafka.Kafka;
+import com.ensono.stacks.stacks_preprocessor.kafka.Kafka;
 #elif USE_SERVICEBUS
-import com.ensono.stacks.servicebus.ServiceBus;
+import com.ensono.stacks.stacks_preprocessor.servicebus.ServiceBus;
 #endif
 
-import com.ensono.stacks.commons.CommonStuff;
+import com.ensono.stacks.stacks_preprocessor.commons.CommonStuff;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

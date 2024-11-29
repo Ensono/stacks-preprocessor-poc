@@ -1,10 +1,10 @@
 package com.ensono.stacks.stacks_preprocessor.repository;
 
 #if USE_DYNAMODB
-import com.ensono.stacks.dynamodb.StacksDynamoDBRepository;
+import com.ensono.stacks.stacks_preprocessor.dynamodb.StacksDynamoDBRepository;
 #elif USE_COSMOS
 
-import com.ensono.stacks.cosmos.StacksCosmosRepository;
+import com.ensono.stacks.stacks_preprocessor.cosmos.StacksCosmosRepository;
 #endif
 
 public interface AppDatabaseRepository
