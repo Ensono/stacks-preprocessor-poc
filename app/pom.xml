@@ -242,6 +242,7 @@
                 </executions>
                 <configuration>
                     <projectLocation>${prop.output.dir}</projectLocation>
+                    <projectConfigFile>app/src/main/resources/templates/project-builder-config.json</projectConfigFile>
                 </configuration>
             </plugin>
 
